@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Games</title>
+</head>
+<body>
+    <table>
+        {% for game in games %}
+        <tr>
+            {% if game.genre.title == genre_title %}
+                <td>
+                    {{ game.title }}
+                </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </table>
+    <a href="{% url 'articles' %}">
+        <button>Return</button>
+    </a>
+</body>
+</html>

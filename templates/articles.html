@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Статьи</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Game</th>
+            {% if user.is_authenticated %}
+                {% load auth_extras %}
+                {% if request.user|has_group:"Redactor" %} 
+                    <th>Redactor Action</th>
+                {% endif %}
+            {% endif %}
+        </tr>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.title }}</td>
+                <td>{{ article.author }}</td>
+                <td>{{ article.game }}</td>
+                {% if user.is_authenticated %}
+                    {% load auth_extras %}
+                    {% if request.user|has_group:"Redactor" %} 
+                        <td>
+                            <a href="delete_article/{{ article.id }}">
+                                <button>Delete Article</button>
+                            </a>
+                        </td>
+                    {% endif %}
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    {% if user.is_authenticated %}
+        {% load auth_extras %}
+        {% if request.user|has_group:"Redactor" %} 
+            <a href="add_article/">
+                <button>Add Article</button>
+            </a>
+        {% endif %}
+    {% endif %}
+    <a href="{% url 'acc_info' %}">
+        <button>My account</button>
+    </a>
+    <a href="{% url 'show_games' %}">
+        <button>Show Games</button>
+    </a>
+</body>
+</html>

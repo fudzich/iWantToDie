@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Account</title>
+</head>
+<body>
+    <p>You are logged in</p>
+    <p>Username : {{ username }}</p>
+    {% load auth_extras %}
+        {% if request.user|has_group:"Redactor" %} 
+            <p>Status: Redactor</p>
+        {% else %} 
+            <p>Status: User</p>
+        {% endif %}
+    <a href="articles/">
+        <button>Articles</button>
+    </a>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">logout</button>
+    </form>
+</body>
+</html>
