@@ -50,6 +50,7 @@ class Article(models.Model):
                                verbose_name="Article's Author", help_text="Enter article's author")
     game = models.ForeignKey(Game, on_delete=models.CASCADE, blank=False, null=False, verbose_name="Game",
                              help_text="Enter game this article covers")
+    content = models.TextField(max_length=1000, blank=True, null=True, verbose_name="Content", help_text="Enter text")
 
     def __str__(self):
         return self.title

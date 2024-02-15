@@ -6,7 +6,7 @@ from pls_w.models import Article
 class articleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('title', 'author', 'game')
+        fields = ('title', 'author', 'game', 'content')
 
 
 class loginForm(forms.Form):

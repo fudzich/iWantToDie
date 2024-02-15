@@ -19,7 +19,11 @@
         </tr>
         {% for article in articles %}
             <tr>
-                <td>{{ article.title }}</td>
+                <td>
+                    <a href="{{ article.id }}">
+                        {{ article.title }}
+                    </a>
+                </td>
                 <td>{{ article.author }}</td>
                 <td>{{ article.game }}</td>
                 {% if user.is_authenticated %}

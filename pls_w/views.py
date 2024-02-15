@@ -9,6 +9,7 @@ def show_articles(request):
     articles = list(Article.objects.all())
     return render(request, 'articles.html', {"articles": articles})
 
+
 def add_article(request):
     if request.method == 'GET':
         form = articleForm()
@@ -23,6 +24,7 @@ def add_article(request):
             print(form.errors)
             pass
 
+
 def acc_info(request):
     user = request.user
     if user.is_authenticated:
@@ -30,6 +32,8 @@ def acc_info(request):
         return render(request, 'accS.html', {'username': username})
     else:
         return render(request, 'accNoS.html')
+
+
 def register_user(request):
     if request.method == 'GET':
         form = loginForm()
@@ -45,6 +49,8 @@ def register_user(request):
             return redirect(acc_info)
         else:
             return redirect(acc_info)
+
+
 def login_user(request):
     if request.method == 'GET':
         form = loginForm()
@@ -76,6 +82,14 @@ def delete_article(request, article_id):
         ad = Article.objects.get(id=article_id)
         ad.delete()
         return render(request, "deleteArticle.html", {"id": article_id})
+    else:
+        return render(request, "noArticle.html")
+
+
+def see_article(request, article_id):
+    if Article.objects.filter(id=article_id).exists():
+        article = Article.objects.get(id=article_id)
+        return render(request, "spArticle.html", {"article": article})
     else:
         return render(request, "noArticle.html")
 # Create your views here.
