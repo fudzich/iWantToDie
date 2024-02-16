@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>404</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 <body>
-    <p> Such article does not exist</p>
-    <a href="{% url 'articles' %}">
-        <button>Return</button>
-    </a>
+    <div class="container">
+        <p> Such article does not exist</p>
+        <a href="{% url 'articles' %}">
+            <button class="btn btn-dark">Return</button>
+        </a>
+    </div>
 </body>
 </html>

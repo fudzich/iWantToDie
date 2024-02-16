@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>My Account</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 <body>
-    <p>You are not logged in</p>
-    <a href="articles/">
-        <button>Articles</button>
-    </a>
-    <a href="login/">
-        <button>Login</button>
-    </a>
-    <a href="register/">
-        <button>Register</button>
-    </a>
+    <div class="container">
+        <p>You are not logged in</p>
+        <a href="articles/">
+            <button class="btn btn-dark">Articles</button>
+        </a>
+        <a href="login/">
+            <button class="btn btn-success">Login</button>
+        </a>
+        <a href="register/">
+            <button class="btn btn-success">Register</button>
+        </a>
+    </div>
 </body>
 </html>

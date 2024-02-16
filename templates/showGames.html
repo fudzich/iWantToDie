@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Choose genre</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 <body>
     <p>Choose Genre:</p>
@@ -11,7 +14,7 @@
             <tr>
                 <td>
                     <a href="{{ genre.title }}/">
-                        <button>{{ genre.title }}</button>
+                        <button class="btn btn-dark">{{ genre.title }}</button>
                     </a>
                 </td>
             </tr>

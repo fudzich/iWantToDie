@@ -1,23 +1,27 @@
+{% load crispy_forms_filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load crispy_forms_tags %}
 </head>
 
 <body>
 {% block content %}
-    <form method = "post">
-        {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <button type="submit">Login</button>
-        
-        <a href="..">
-            <button>Create Account</button>
-        </a>
-    </form>
+    <div class="container">
+        <form method = "post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-dark">Login</button>
+            <a href="..">
+                <button class="btn btn-dark">Return</button>
+            </a>
+        </form>
+    </div>
 {% endblock %}
 </body>
 
