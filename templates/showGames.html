@@ -8,17 +8,19 @@
     {% bootstrap_javascript %}
 </head>
 <body>
-    <p>Choose Genre:</p>
-    <table>
-        {% for genre in genres %}
-            <tr>
-                <td>
-                    <a href="{{ genre.title }}/">
-                        <button class="btn btn-dark">{{ genre.title }}</button>
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+    <div class="container">
+        <h4 class="font-weight-bold mb-3">Choose Genre:</h4>
+        <table>
+            {% for genre in genres %}
+                <tr>
+                    <td>
+                        <a href="{{ genre.title }}/">
+                            <button class="btn btn-dark">{{ genre.title }}</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 </html>

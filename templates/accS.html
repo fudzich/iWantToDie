@@ -9,20 +9,24 @@
 </head>
 <body>
     <div class="container">
-        <p>You are logged in</p>
-        <p>Username : {{ username }}</p>
-        {% load auth_extras %}
-            {% if request.user|has_group:"Redactor" %} 
-                <p>Status: Redactor</p>
-            {% else %} 
-                <p>Status: User</p>
-            {% endif %}
+        <h4 class="font-weight-bold">You are logged in</h4>
+        <div class="card mt-4" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item">Username : {{ username }}</li>
+            {% load auth_extras %}
+                {% if request.user|has_group:"Redactor" %}
+                    <li class="list-group-item">Status: Redactor</li>
+                {% else %}
+                    <li class="list-group-item">Status: User</li>
+                {% endif %}
+            </ul>
+        </div>
         <a href="articles/">
-            <button class="btn btn-dark">Articles</button>
+            <button class="btn btn-dark mt-4">Articles</button>
         </a>
         <form method="post" action="{% url 'logout' %}?next={% url 'acc_info' %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger">logout</button>
+            <button type="submit" class="btn btn-danger mt-1">logout</button>
         </form>
     </div>
 </body>
