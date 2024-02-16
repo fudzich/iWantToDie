@@ -16,12 +16,42 @@
         <form method = "post">
             {% csrf_token %}
             {{ form|crispy}}
-            <button type="submit" class="btn btn-dark">Create Account</button>
+            <button type="submit" class="btn btn-dark" id="register_button">Create Account</button>
             <a href="..">
                 <button class="btn btn-dark">Return</button>
             </a>
         </form>
     </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#id_login').keyup(function(){
+                console.log("in");
+                $.ajax({
+                    data: $(this).serialize(),
+                    url:"{% url 'validate_username' %}",
+                    success:
+                        function (response){
+                            if(response.taken == true){
+                                $('#id_login').addClass('is-invalid');
+                                $('#register_button').prop('disabled', true);
+                            }
+                            else{
+                                $('#id_login').removeClass('is-invalid');
+                                $('#register_button').prop('disabled', false);
+                            }
+                        },
+                    error: function (response){
+                        console.log(response.responseJson.errors);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
 {% endblock %}
 </body>
 

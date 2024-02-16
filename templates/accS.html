@@ -20,7 +20,7 @@
         <a href="articles/">
             <button class="btn btn-dark">Articles</button>
         </a>
-        <form method="post" action="{% url 'logout' %}">
+        <form method="post" action="{% url 'logout' %}?next={% url 'acc_info' %}">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger">logout</button>
         </form>

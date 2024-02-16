@@ -30,5 +30,6 @@ urlpatterns = [
     path('show_games/', views.show_games, name='show_games'),
     path('show_games/<str:genre_title>/', views.show_games_by, name='show_games_by'),
     path('articles/delete_article/<int:article_id>/', views.delete_article, name='delete_article'),
-    path('articles/<int:article_id>/', views.see_article, name='see_article')
+    path('articles/<int:article_id>/', views.see_article, name='see_article'),
+    path('ajax/validate_username', views.validate_username, name='validate_username')
 ]

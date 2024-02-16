@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from pls_w.forms import articleForm, loginForm, registerForm
 from pls_w.models import Article, Employee, Game, Genre
@@ -39,7 +40,7 @@ def register_user(request):
         form = loginForm()
         return render(request, "registerForm.html", {"form":form})
     else:
-        if (request.POST.get('username') != '' and request.POST.get('password') != ''):
+        if (request.POST.get('login') != '' and request.POST.get('password') != ''):
             username = request.POST["login"]
             password = request.POST["password"]
             print(username + " " + password)
@@ -61,8 +62,12 @@ def login_user(request):
             password = request.POST["password"]
             print(username+" "+password)
             user = authenticate(request, username=username, password=password)
-            login(request, user)
-            return redirect(acc_info)
+            try:
+                login(request, user)
+                return redirect(acc_info)
+            except Exception:
+                return redirect(login_user)
+
         else:
             return redirect(acc_info)
 
@@ -92,4 +97,12 @@ def see_article(request, article_id):
         return render(request, "spArticle.html", {"article": article})
     else:
         return render(request, "noArticle.html")
+
+
+def validate_username(request):
+    username = request.GET.get("login", None)
+    responce = {
+        'taken': User.objects.filter(username__exact=username).exists()
+    }
+    return JsonResponse(responce)
 # Create your views here.
